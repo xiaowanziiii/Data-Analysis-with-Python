@@ -1,15 +1,15 @@
-import numpy as np
 import torch
 from torch import nn
 
 def create_model():
-    # your code here
-    # return model instance (None is just a placeholder)
-
-    return None
+    # Создаем простую модель с двумя полносвязными слоями
+model = nn.Sequential(
+    nn.Linear(10, 50),  # Входной слой: 10 входов, 50 выходов
+    nn.ReLU(),          # Активационная функция ReLU
+    nn.Linear(50, 1)    # Выходной слой: 50 входов, 1 выход
+)
+    return model
 
 def count_parameters(model):
-    # your code here
-    # return integer number (None is just a placeholder)
-    
-    return None
+    # Подсчитываем все обучаемые параметры модели
+    return sum(p.numel() for p in model.parameters() if p.requires_grad)
